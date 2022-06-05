@@ -1,0 +1,3 @@
+FROM dahirmuhammaddahir/php_grpc_fingerprint_client
+
+EXPOSE 80
