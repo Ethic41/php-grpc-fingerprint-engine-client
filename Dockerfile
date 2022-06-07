@@ -1,3 +1,13 @@
-FROM dahirmuhammaddahir/php_grpc_fingerprint_client
+FROM dahirmuhammaddahir/secureng-php-apache
 
-EXPOSE 80
+WORKDIR /var/www/html
+
+COPY . .
+
+RUN composer update && \
+    composer install && \
+    cd thirdparty/grpc-fingerprint-engine/src/php/ && \
+    composer update && \
+    composer install && \
+    apt update && apt install -y net-tools
+
