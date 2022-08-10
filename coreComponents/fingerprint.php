@@ -9,8 +9,10 @@
 require_once(__DIR__ . "/" . "../vendor/autoload.php");
 
 $fp_engine_host = getenv("FP_ENGINE_HOST");
+// consider making this createInsecure when running in localhost
+// not google cloud or environment with ssl
 $client = new Fingerprint\FingerPrintClient($fp_engine_host, [
-    "credentials" => Grpc\ChannelCredentials::createInsecure(),
+    "credentials" => Grpc\ChannelCredentials::createSsl(),
 ]);
 
 function enroll_fingerprint($pre_fmd_string_array){
